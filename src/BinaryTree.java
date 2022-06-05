@@ -229,7 +229,22 @@ public class BinaryTree {
         System.out.println(currentLevelStr);
     }
 
-private class BinaryTreeNode{
+
+    public void recursive_print() {
+        recursive_print(root);
+    }
+
+
+    private void recursive_print(BinaryTreeNode node) {
+        if (node != null) {
+            System.out.println(node.value);
+            recursive_print(node.leftChild);
+            recursive_print(node.rightChild);
+        }
+    }
+
+
+private static class BinaryTreeNode{
     BinaryTreeNode leftChild;
     BinaryTreeNode rightChild;
     int value;
