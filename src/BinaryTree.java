@@ -40,6 +40,7 @@ public class BinaryTree {
     }
 
 
+    @SuppressWarnings("UnusedReturnValue")
     public BinaryTree add(int item) {
         BinaryTreeNode newItem = new BinaryTreeNode();
         newItem.value = item;
@@ -48,7 +49,7 @@ public class BinaryTree {
             size += 1;
         } else {
             BinaryTreeNode current = root;
-            BinaryTreeNode parent = null;
+            BinaryTreeNode parent;
             while (true) {
                 parent = current;
                 if (newItem.value < parent.value) {
@@ -201,24 +202,33 @@ public class BinaryTree {
     public void print_tree() {
         LinkedList <Pair> queue = new LinkedList <> ();
         queue.offer(new Pair(0, root));
+        boolean isOnNewLevel = true;
         var currentLevel = 0;
-        var currentLevelStr = "LO: ";
+        StringBuilder currentLevelStr = new StringBuilder(String.format("L%s: ",currentLevel));
         while (!queue.isEmpty()) {
             Pair next = queue.poll();
             BinaryTreeNode currentNode = (BinaryTreeNode) next.second;
             int nodeLevel = (int) next.first;
             if (currentLevel != nodeLevel) {
                 //You are on a new level
+                isOnNewLevel = true;
                 //print the currentLevelStr
-                System.out.println(currentLevelStr);
+                //noinspection UnnecessaryToStringCall
+                System.out.println(currentLevelStr.toString());
                 currentLevel = nodeLevel;
                 //make new currentLevelStr "L1: "
-                currentLevelStr = String.format("L%s: ",currentLevel);
+                currentLevelStr = new StringBuilder(String.format("L%s: ",currentLevel));
             }
 
             //add node.value to currentLevelStr
-            currentLevelStr += String.format("%s, ",currentNode.value);
-            //TODO String Builder
+            if (isOnNewLevel){ //to add a comma or not -- that is the question
+                isOnNewLevel = false;
+            } else {
+                currentLevelStr.append(", ");
+            }
+            currentLevelStr.append(currentNode.value);
+
+
             if (currentNode.leftChild != null) {
                 queue.offer(new Pair(currentLevel + 1, currentNode.leftChild));
             }
