@@ -5,8 +5,27 @@ import java.util.LinkedList;
 @SuppressWarnings("ALL")
 public class Tester implements Comparable {
     public static void main(String[] args){
-        test_add_items_already_added();
+        //test_add_items_already_added();
+        javaGenericsExample();
     }
+
+    public static void javaGenericsExample() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.add(10);
+        list.add(11);
+
+
+        Object valueFromList = list.removeFirst();
+
+        if (valueFromList instanceof Integer) {
+            System.out.println((Integer)valueFromList + 2);
+        } else if (valueFromList instanceof String) {
+            System.out.println(valueFromList);
+        }
+
+    }
+
+
     public static void test_add_items_already_added() { //Case 2: With items in it
         BinaryTree printedTree = new BinaryTree();
         int item1 = 1;
