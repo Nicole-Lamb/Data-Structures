@@ -1,4 +1,9 @@
-public class Tester {
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedList;
+
+@SuppressWarnings("ALL")
+public class Tester implements Comparable {
     public static void main(String[] args){
         test_add_items_already_added();
     }
@@ -13,6 +18,28 @@ public class Tester {
         printedTree.print_tree();
     }
 
+    String aValue = "A Value";
+
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        int returnValue = 0;
+        if (o instanceof Tester){
+            returnValue = aValue.compareTo(((Tester) o).aValue);
+        }
+        return returnValue;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        boolean returnValue = false;
+        if (this == o){
+            returnValue = true;
+        } else if (o instanceof Tester) {
+            returnValue = aValue == ((Tester) o).aValue;
+        }
+        return returnValue;
+    }
 
 }
 
