@@ -46,14 +46,19 @@ class BinaryTreeTest {
         assertEquals(1,testTree.getRootValue());
     }
 
-    @Test
-    void insert() {
-        fail("Not implemented.");
-    }
 
     @Test
-    void insert_balanced() {
-        fail("Not implemented.");
+    void insert_balanced() { fail("Not Implemented");
+        //Left Left Case - 10 5 1
+        testTree.add(10);
+        testTree.add(5);
+        testTree.add(1);
+
+        //Right Right Case
+
+        //Left Right Case
+
+        //Right Left Case
     }
 
     @Test
